@@ -1,0 +1,86 @@
+/* A single rounded glass surface for the full storefront header. */
+.glass-header {
+    margin-block: 18px 20px;
+    border: 1px solid #ffffffb8;
+    border-radius: 28px;
+    background: #fffffff2;
+    box-shadow: 0 12px 40px #17384b1c,
+        inset 0 1px 0 #ffffff,
+        inset 0 -1px 0 #ffffff80;
+}
+
+@supports ((backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px))) {
+    .glass-header {
+        background: linear-gradient(125deg, #ffffffc2, #ffffff70 48%, #ffffffa8);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        backdrop-filter: blur(24px) saturate(160%);
+    }
+}
+
+.glass-header > .container,
+.glass-header .topbar-content {
+    width: calc(100% - 40px);
+}
+
+.glass-header .topline {
+    background: transparent;
+    border-bottom-color: #ffffff66;
+    border-radius: 28px 28px 0 0;
+}
+
+.glass-header .header,
+.glass-header .catalog-nav {
+    background: transparent;
+}
+
+.glass-header .header-search {
+    background: #ffffff60;
+    border-color: #143ff299;
+    border-radius: 18px;
+    box-shadow: inset 0 1px 1px #ffffffcc;
+}
+
+.glass-header .header-action {
+    background: #ffffff66;
+    border: 1px solid #ffffff85;
+    border-radius: 16px;
+    box-shadow: inset 0 1px 0 #ffffffa6;
+}
+
+.glass-header .header-action:hover {
+    background: #ffffffb3;
+}
+
+.glass-header .catalog-button {
+    border-radius: 16px;
+    box-shadow: inset 0 1px 0 #ffffff59, 0 4px 12px #143ff21a;
+}
+
+.glass-header .brand small,
+.glass-header .header-contact small {
+    color: #525e70;
+}
+
+@media (max-width: 800px) {
+    .glass-header {
+        border-radius: 24px;
+        margin-block: 12px 16px;
+    }
+
+    .glass-header > .container,
+    .glass-header .topbar-content {
+        width: calc(100% - 24px);
+    }
+
+    .glass-header .topline {
+        border-radius: 24px 24px 0 0;
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .glass-header {
+        background: #f7faff;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}

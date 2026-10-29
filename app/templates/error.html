@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container section narrow">
+    <div class="panel">
+      <div class="eyebrow">НЕ УДАЛОСЬ ПРОДОЛЖИТЬ</div>
+      <h1>Проверьте данные</h1>
+      <p role="alert">{{ message }}</p>
+      <div class="actions">
+        <button class="secondary" data-back>Вернуться к форме</button><a href="/catalog">В каталог</a>
+        {% if not user %}
+          <a href="/login">Войти</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

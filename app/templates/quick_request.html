@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container section narrow">
+    <div class="eyebrow">ПОМОЖЕМ НАЙТИ НУЖНОЕ</div>
+    <h1>Не нашли товар?</h1>
+    <p class="muted">Напишите, какие товары и в каком количестве нужны вашему магазину. Менеджер свяжется с вами, уточнит цены и отдельно согласует доставку.</p>
+    <form class="panel form-stack" action="/request/quick" method="post">
+      {% include "_csrf.html" %}
+      <input type="hidden" name="submission_key" value="{{ submission_key }}"><label>Напишите, что вам нужно<textarea name="quick_text"
+          minlength="3"
+          maxlength="4000"
+          placeholder="Например: трубы 20 мм — 10 м, 6 уголков и смеситель для кухни"
+          required>{{ quick_text }}</textarea>
+      </label>
+      {% include "_contact_fields.html" %}
+      <button>Отправить заявку →</button>
+    </form>
+  </section>
+{% endblock %}

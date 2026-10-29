@@ -1,0 +1,17 @@
+<label>
+  Контактное лицо магазина<input name="name"
+       autocomplete="name"
+       minlength="2"
+       maxlength="100"
+       required
+       value="{{ user.company.contact if user and user.company else '' }}"></label><label>Телефон<input name="phone"
+       type="tel"
+       autocomplete="tel"
+       placeholder="+7 (999) 123-45-67"
+       minlength="10"
+       maxlength="24"
+       required
+       value="{{ user.company.phone if user and user.company else '' }}"></label><label>Комментарий<textarea name="comment"
+          maxlength="2000"
+          placeholder="Дополнительные пожелания"></textarea>
+  </label>

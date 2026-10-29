@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container section narrow">
+    <div class="eyebrow">РАДЫ ВАС ВИДЕТЬ</div>
+    <h1>Вход в кабинет</h1>
+    <form class="panel form-stack" action="/login" method="post">
+      {% include "_csrf.html" %}
+      <label>
+        Email или логин<input name="email"
+       type="text"
+       autocomplete="username"
+       maxlength="254"
+       required></label><label>Пароль<input name="password"
+       type="password"
+       autocomplete="current-password"
+       maxlength="128"
+       required></label><button>Войти</button><a class="text-link" href="/register">Создать кабинет магазина →</a>
+    </form>
+  </section>
+{% endblock %}

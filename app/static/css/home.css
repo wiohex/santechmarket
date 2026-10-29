@@ -1,0 +1,122 @@
+/* The same glass material throughout the homepage. */
+.home-page {
+    --bg: #f0f5fa;
+    --muted: #536176;
+}
+
+.home-page :is(.hero, .category-card, .product-card, .b2b-banner,
+    .contacts > div, .section-head h2, .section-head > .text-link, .footer, .notice) {
+    background: #f8fbfff2;
+    border: 1px solid #ffffffb8;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px #17384b12,
+        inset 0 1px 0 #ffffff,
+        inset 0 -1px 0 #ffffff70;
+}
+
+@supports ((backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px))) {
+    .home-page :is(.hero, .category-card, .product-card, .b2b-banner,
+        .contacts > div, .section-head h2, .section-head > .text-link, .footer, .notice) {
+        background: linear-gradient(125deg, #ffffffc9, #ffffff7d 50%, #ffffffad);
+        -webkit-backdrop-filter: blur(24px) saturate(150%);
+        backdrop-filter: blur(24px) saturate(150%);
+    }
+}
+
+.home-page .hero-visual,
+.home-page .product-image {
+    background: transparent;
+}
+
+.home-page .hero-visual img {
+    mix-blend-mode: multiply;
+    opacity: .8;
+}
+
+.home-page .product-image img[src$="product-placeholder.svg"] {
+    mix-blend-mode: multiply;
+}
+
+.home-page :is(.hero p, .hero-notes, .b2b-banner p, .price-note, .sku,
+    .category-card > span:last-child, .map-panel p) {
+    color: #536176;
+}
+
+.home-page .section-head :is(h2, .text-link) {
+    border-radius: 16px;
+    padding: 10px 16px;
+}
+
+.home-page .contacts > div {
+    padding: 28px;
+    min-width: 0;
+}
+
+.home-page .contacts .map-panel:has(iframe) {
+    padding: 0;
+    overflow: hidden;
+}
+
+.home-page footer {
+    background: transparent;
+    border: 0;
+    padding-top: 0;
+    color: #536176;
+}
+
+.home-page .footer {
+    padding: 28px;
+}
+
+.home-page :is(.button, .add-button) {
+    background: linear-gradient(145deg, #2855f5e8, #123ddbd9);
+    border: 1px solid #ffffff70;
+    border-radius: 16px;
+    color: #fff;
+    box-shadow: inset 0 1px 0 #ffffff70, 0 5px 16px #143ff226;
+    transition: background .2s, box-shadow .2s;
+}
+
+.home-page :is(.button, .add-button):hover {
+    background: linear-gradient(145deg, #3b66f9f2, #143edfe8);
+    box-shadow: inset 0 1px 0 #ffffff99, 0 7px 20px #143ff238;
+}
+
+.home-page .button.secondary,
+.home-page .visual-label {
+    color: #173ea8;
+    background: linear-gradient(135deg, #ffffffb3, #ffffff59);
+    border: 1px solid #ffffffbf;
+    border-radius: 16px;
+    box-shadow: inset 0 1px 0 #ffffffa6, 0 4px 12px #17384b0d;
+}
+
+.home-page .button.secondary:hover {
+    background: #ffffffd9;
+}
+
+.home-page .category-card:hover,
+.home-page .product-card:hover {
+    border-color: #ffffff;
+    box-shadow: 0 14px 36px #17384b24, inset 0 1px 0 #ffffff;
+}
+
+@media (max-width: 700px) {
+    .home-page :is(.category-card, .product-card) {
+        border-radius: 20px;
+    }
+
+    .home-page .contacts > div,
+    .home-page .footer {
+        padding: 22px;
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .home-page :is(.hero, .category-card, .product-card, .b2b-banner,
+        .contacts > div, .section-head h2, .section-head > .text-link, .footer, .notice) {
+        background: #f8fbff;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}

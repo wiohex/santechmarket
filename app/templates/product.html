@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} — {{ settings.store_name }}{% endblock %}
+{% block content %}
+  <section class="container section">
+    <a class="text-link" href="/catalog?category={{ product.category_id }}">← {{ product.category.name }}</a>
+    <div class="detail">
+      <div class="product-image">
+        <img src="{{ product.photo or '/static/product-placeholder.svg' }}"
+             alt="{{ product.name }}">
+      </div>
+      <div>
+        <span class="stock available">{{ 'В наличии' if product.in_stock else 'Под заказ' }}</span>
+        <h1>{{ product.name }}</h1>
+        <p class="muted">Артикул: {{ product.sku }}</p>
+        <h2>{{ product.price|money }}</h2>
+        {% include "_price_terms.html" %}
+        <p class="preserve">{{ product.description }}</p>
+        <form class="actions" action="/request/add" method="post">
+          {% include "_csrf.html" %}
+          <input type="hidden" name="product_id" value="{{ product.id }}"><label>Количество<input class="qty"
+       type="number"
+       name="quantity"
+       min="1"
+       max="9999"
+       value="1"
+       required></label><button>Добавить в заявку</button>
+        </form>
+        <p class="muted">Оставьте заявку на поставку в ваш магазин. Менеджер подтвердит цены и наличие по телефону.</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

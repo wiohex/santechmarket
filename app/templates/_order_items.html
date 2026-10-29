@@ -1,0 +1,38 @@
+{% if order.quick_text %}
+  <h3>Что нужно клиенту</h3>
+  <p class="preserve">{{ order.quick_text }}</p>
+{% endif %}
+{% if order.items %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Товар</th>
+          <th>Кол-во</th>
+          <th>Цена</th>
+          <th>Сумма</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in order.items %}
+          <tr>
+            <td>
+              {{ item.name }}
+              <br>
+              <small class="muted">{{ item.sku }}</small>
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price|money }}</td>
+            <td>{{ (item.price * item.quantity)|money }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="total"><span>Предварительно</span><strong>{{ order.total|money }}</strong></div>
+{% endif %}
+{% include "_price_terms.html" %}
+{% if order.comment %}
+  <h3>Комментарий клиента</h3>
+  <p class="preserve">{{ order.comment }}</p>
+{% endif %}

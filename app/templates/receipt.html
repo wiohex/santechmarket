@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container section narrow">
+    <div class="panel">
+      <div class="eyebrow">СПАСИБО, МЫ ПОЛУЧИЛИ ВАШУ ЗАЯВКУ</div>
+      <h1>Скоро свяжемся с вами</h1>
+      <div class="success-number">{{ order.number }}</div>
+      <p>{{ order.name }}, позвоним по номеру {{ order.phone }}, чтобы уточнить детали.</p>
+      <p><span class="badge">{{ statuses[order.status] }}</span></p>
+      {% include "_order_items.html" %}
+      <p class="muted">Сохраните номер заявки. Менеджер подтвердит наличие, цены товаров и отдельно согласует доставку по телефону.</p>
+      <a class="button" href="/catalog">Вернуться в каталог</a>
+    </div>
+  </section>
+{% endblock %}

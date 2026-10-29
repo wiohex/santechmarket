@@ -1,0 +1,23 @@
+<article class="product-card"><a class="product-image" href="/products/{{ product.id }}">
+  {% if product.photo %}
+    <img src="{{ product.photo }}" alt="{{ product.name }}" loading="lazy">
+  {% else %}
+    <img src="{{ '/static/product-placeholder-glass.svg' if request.url.path == '/' else '/static/product-placeholder.svg' }}"
+         alt="Фото товара пока нет"
+         loading="lazy">
+  {% endif %}
+  </a>
+  <div class="product-content">
+    <span class="stock {{ 'available' if product.in_stock else '' }}">{{ 'В наличии' if product.in_stock else 'Под заказ' }}</span>
+    <p class="sku">Арт. {{ product.sku }}</p>
+    <h3><a href="/products/{{ product.id }}">{{ product.name }}</a></h3>
+    <div class="product-bottom">
+      <strong>{{ product.price|money }}</strong>
+      <small class="price-note">Предварительно · без доставки</small>
+      <form action="/request/add" method="post">
+        {% include "_csrf.html" %}
+        <input type="hidden" name="product_id" value="{{ product.id }}"><input type="hidden" name="quantity" value="1"><button class="add-button" aria-label="Добавить {{ product.name }} в заявку">В заявку <span aria-hidden="true">+</span></button>
+      </form>
+    </div>
+  </div>
+</article>

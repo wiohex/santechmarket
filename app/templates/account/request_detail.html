@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container section narrow">
+    <a class="text-link" href="/account">← В кабинет</a>
+    <h1>Заявка {{ order.number }}</h1>
+    <div class="panel">
+      <p><span class="badge">{{ statuses[order.status] }}</span> · {{ order.created_at.strftime("%d.%m.%Y") }}</p>
+      {% include "_order_items.html" %}
+      {% if order.owner_comment %}
+        <h3>Комментарий магазина</h3>
+        <p class="preserve">{{ order.owner_comment }}</p>
+      {% endif %}
+      <form action="/account/requests/{{ order.id }}/repeat"
+            method="post"
+            data-confirm="Заменить текущий список товарами этой заявки? Цены будут актуальными.">
+        {% include "_csrf.html" %}
+        <button>Повторить заявку</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}

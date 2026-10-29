@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ settings.store_name }} — оптовая сантехника для магазинов{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css?v=20261030-organized">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    <div class="site-backdrop" data-scroll-backdrop aria-hidden="true"></div>
+    <div class="container glass-header">
+    <div class="topline">
+      <div class="container topbar-content">
+        <a href="/#contacts" class="store-location">Оптовые поставки в магазины</a>
+        <nav aria-label="Информация о магазине">
+          <a href="/#contacts">О поставщике</a><a href="/account">Магазинам</a><a href="/#contacts">Контакты</a>
+        </nav>
+        <span class="header-contact">{{ settings.store_phone or 'Поможем с подбором' }} <small>{{ settings.store_hours }}</small></span>
+      </div>
+    </div>
+    <header class="container header">
+      <a class="brand" href="/"><span class="brand-icon">∿</span>{{ settings.store_name }}<small>ОПТОВЫЕ ПОСТАВКИ САНТЕХНИКИ</small></a>
+      <a class="button catalog-button" href="/catalog">
+        <svg class="ui-icon" aria-hidden="true">
+          <use href="/static/catalog-icons.svg#menu"></use>
+        </svg>Каталог</a>
+        <form class="header-search" action="/catalog" method="get" role="search">
+          <input name="q"
+                 aria-label="Поиск по каталогу"
+                 placeholder="Название или артикул"
+                 maxlength="100"
+                 value="{{ request.query_params.get('q', '') }}">
+          <button aria-label="Искать товары">
+            <svg class="ui-icon" aria-hidden="true">
+              <use href="/static/catalog-icons.svg#search"></use>
+            </svg>
+          </button>
+        </form>
+        <div class="header-actions">
+          <a class="header-action"
+             href="{{ '/admin' if user and user.role == 'admin' else '/account' }}">
+            <svg class="ui-icon" aria-hidden="true">
+              <use href="/static/catalog-icons.svg#user"></use>
+            </svg><span>{{ 'Админка' if user and user.role == 'admin' else 'Кабинет' }}</span></a>
+            <a class="header-action request-action" href="/request">
+              <svg class="ui-icon" aria-hidden="true">
+                <use href="/static/catalog-icons.svg#bag"></use>
+              </svg><span>Заявка</span><span class="counter">{{ cart_count }}</span></a>
+            </div>
+          </header>
+          <nav class="container catalog-nav" aria-label="Категории товаров">
+            {% for c in navigation_categories %}<a href="/catalog?category={{ c.id }}">{{ c.name }}</a>{% endfor %}
+            <a class="selection-link" href="/quick-request">Помощь с подбором →</a>
+          </nav>
+    </div>
+          <main>
+            {% if notice %}
+              <div class="container">
+                <div class="notice" role="status">{{ notice }}</div>
+              </div>
+            {% endif %}
+            {% block content %}{% endblock %}
+          </main>
+          <footer>
+            <div class="container footer">
+              <div>
+                <strong>{{ settings.store_name }}</strong>
+                <p>Поставки сантехники для магазинов.</p>
+              </div>
+              <div>
+                <a href="/catalog">Каталог</a> · <a href="/quick-request">Не нашли товар?</a>
+                <p>Цены предварительные, без доставки. Доставку согласуем по телефону.</p>
+              </div>
+              <div>
+                {% if user %}
+                  <form action="/logout" method="post">
+                    {% include "_csrf.html" %}
+                    <button class="link">Выйти из аккаунта</button>
+                  </form>
+                {% else %}
+                  <a href="/login">Вход</a>
+                {% endif %}
+              </div>
+            </div>
+          </footer>
+        </body>
+      </html>

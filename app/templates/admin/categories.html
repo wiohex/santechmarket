@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container section">
+    <h1>Категории</h1>
+    {% include "admin/_nav.html" %}
+    <div class="panel summary">
+      <h2>Добавить категорию</h2>
+      <form class="inline-form" action="/admin/categories" method="post">
+        {% include "_csrf.html" %}
+        <label>
+          Название<input name="name" maxlength="100" minlength="2" required></label><label>Slug (латиница)<input name="slug"
+       maxlength="100"
+       pattern="[a-z0-9]+(-[a-z0-9]+)*"
+       placeholder="pipes"
+       required></label><button>Добавить</button>
+      </form>
+    </div>
+    {% for c in categories %}
+      <div class="panel summary">
+        <form class="inline-form"
+              action="/admin/categories/{{ c.id }}/edit"
+              method="post">
+          {% include "_csrf.html" %}
+          <label>
+            Название<input name="name"
+       value="{{ c.name }}"
+       maxlength="100"
+       minlength="2"
+       required></label><label>Slug<input name="slug"
+       value="{{ c.slug }}"
+       maxlength="100"
+       pattern="[a-z0-9]+(-[a-z0-9]+)*"
+       required></label><button class="secondary">Сохранить</button>
+        </form>
+        <form action="/admin/categories/{{ c.id }}/delete"
+              method="post"
+              data-confirm="Удалить пустую категорию?">
+          {% include "_csrf.html" %}
+          <button class="link danger">Удалить категорию</button>
+        </form>
+      </div>
+    {% endfor %}
+  </section>
+{% endblock %}

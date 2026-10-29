@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container section narrow">
+    <h1>{{ 'Изменить товар' if product else 'Новый товар' }}</h1>
+    {% include "admin/_nav.html" %}
+    <form class="panel form-stack"
+          action="/admin/products/save"
+          method="post"
+          enctype="multipart/form-data">
+      {% include "_csrf.html" %}
+      <input type="hidden" name="id" value="{{ product.id if product else '' }}"><label>Название<input name="name"
+       value="{{ product.name if product else '' }}"
+       maxlength="200"
+       minlength="2"
+       required>
+      </label>
+      <div class="form-grid">
+        <label>
+          Артикул<input name="sku"
+       value="{{ product.sku if product else '' }}"
+       maxlength="80"
+       required></label><label>Цена, ₽<input name="price"
+       type="number"
+       min="0"
+       max="100000000"
+       step="0.01"
+       value="{{ product.price / 100 if product else '' }}"
+       required>
+          </label>
+        </div>
+        <label>
+          Категория<select name="category_id" required>
+          {% for c in categories %}
+            <option value="{{ c.id }}"
+                    {% if product and product.category_id==c.id %}selected{% endif %}>{{ c.name }}</option>
+          {% endfor %}
+        </select></label><label>Описание<textarea name="description" maxlength="10000">{{ product.description if product else '' }}</textarea></label><label>Фото: JPG, PNG, WebP, до 3 МБ<input type="file" name="photo" accept="image/jpeg,image/png,image/webp">
+        </label>
+        {% if product and product.photo %}
+          <img src="{{ product.photo }}" alt="Текущее фото" width="160"><label class="check"><input type="checkbox" name="remove_photo" value="true">Убрать текущее фото
+          </label>
+        {% endif %}
+        <label class="check"><input type="checkbox"
+       name="in_stock"
+       value="true"
+       {% if not product or product.in_stock %}checked{% endif %}>В наличии</label><label class="check"><input type="checkbox"
+       name="active"
+       value="true"
+       {% if not product or product.active %}checked{% endif %}>Показывать в каталоге</label><button>Сохранить товар</button></form></section>
+{% endblock %}

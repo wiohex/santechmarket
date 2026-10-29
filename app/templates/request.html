@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container section">
+    <div class="eyebrow">УТОЧНИМ ДЕТАЛИ ПО ТЕЛЕФОНУ</div>
+    <h1>Ваша заявка</h1>
+    <div class="cart-layout">
+      <div class="panel">
+        {% for product, quantity in items %}
+          <div class="cart-item">
+            <div>
+              <h3><a href="/products/{{ product.id }}">{{ product.name }}</a></h3>
+              <div class="muted">{{ product.sku }} · {{ product.price|money }} / шт. · {{ 'В наличии' if product.in_stock else 'Под заказ' }}</div>
+            </div>
+            <form action="/request/update" method="post">
+              {% include "_csrf.html" %}
+              <input type="hidden" name="product_id" value="{{ product.id }}"><label>Кол-во<input class="qty"
+       type="number"
+       name="quantity"
+       value="{{ quantity }}"
+       min="1"
+       max="9999"
+       required></label><button class="small secondary" name="action" value="update">✓</button><button class="small secondary"
+        name="action"
+        value="remove"
+        aria-label="Удалить {{ product.name }}">×</button>
+            </form>
+          </div>
+        {% else %}
+          <h2>Здесь пока пусто</h2>
+          <p>Добавьте товары из каталога или опишите, что ищете.</p>
+        {% endfor %}
+        {% if items %}
+          <div class="total"><span>Предварительно</span><strong>{{ total|money }}</strong></div>
+          {% include "_price_terms.html" %}
+        {% endif %}
+        <div class="actions summary"><a class="text-link" href="/catalog">← Продолжить подбор</a><a class="text-link" href="/quick-request">Текстовая заявка</a></div>
+      </div>
+      <form class="panel form-stack" action="/request/submit" method="post">
+        {% include "_csrf.html" %}
+        <input type="hidden" name="submission_key" value="{{ submission_key }}">
+        <h2>Как с вами связаться?</h2>
+        {% include "_contact_fields.html" %}
+        <p class="muted">Заявка на оптовую поставку в магазин. Менеджер позвонит, подтвердит цены и наличие, отдельно согласует стоимость и условия доставки.</p><button {% if not items %}disabled{% endif %}>Отправить заявку →</button></form></div></section>
+{% endblock %}

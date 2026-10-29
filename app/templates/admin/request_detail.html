@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container section">
+    {% include "admin/_nav.html" %}
+    <h1>Заявка {{ order.number }}</h1>
+    <div class="admin-layout">
+      <div class="panel">
+        <h2>{{ order.name }}</h2>
+        <p>{{ order.phone }}</p>
+        {% if order.user and order.user.company %}
+          <p>{{ order.user.company.name }} · ИНН {{ order.user.company.inn }}</p>
+        {% endif %}
+        {% include "_order_items.html" %}
+      </div>
+      <form class="panel form-stack" method="post">
+        {% include "_csrf.html" %}
+        <h2>Обработка заявки</h2>
+        <label>
+          Статус<select name="status">
+          {% for key,label in statuses.items() %}
+            <option value="{{ key }}" {% if order.status==key %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select></label><label>Комментарий владельца<textarea name="owner_comment"
+          maxlength="4000">{{ order.owner_comment }}</textarea>
+        </label>
+        <p class="muted">Этот комментарий виден компании в её кабинете.</p>
+        <button>Сохранить</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}
