@@ -3,6 +3,6 @@
 /* Order matters: shared styles, storefront, glass header, homepage. */
 @import url("css/base.css?v=3");
 @import url("css/storefront.css?v=3");
-@import url("css/glass.css?v=3");
+@import url("css/glass.css?v=4");
 @import url("css/glass-header.css?v=3");
 @import url("css/home.css?v=3");
