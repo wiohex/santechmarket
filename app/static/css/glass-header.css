@@ -1,20 +1,7 @@
-/* A single rounded glass surface for the full storefront header. */
+/* Header layout only. The material is defined in glass.css. */
 .glass-header {
-    margin-block: 18px 20px;
-    border: 1px solid #ffffffb8;
+    margin-block: 18px 24px;
     border-radius: 28px;
-    background: #fffffff2;
-    box-shadow: 0 12px 40px #17384b1c,
-        inset 0 1px 0 #ffffff,
-        inset 0 -1px 0 #ffffff80;
-}
-
-@supports ((backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px))) {
-    .glass-header {
-        background: linear-gradient(125deg, #ffffffc2, #ffffff70 48%, #ffffffa8);
-        -webkit-backdrop-filter: blur(24px) saturate(160%);
-        backdrop-filter: blur(24px) saturate(160%);
-    }
 }
 
 .glass-header > .container,
@@ -24,63 +11,96 @@
 
 .glass-header .topline {
     background: transparent;
-    border-bottom-color: #ffffff66;
+    border-bottom-color: rgba(255, 255, 255, .65);
     border-radius: 28px 28px 0 0;
+    color: var(--muted);
 }
 
-.glass-header .header,
-.glass-header .catalog-nav {
-    background: transparent;
+.header-contact-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 0 18px;
 }
 
-.glass-header .header-search {
-    background: #ffffff60;
-    border-color: #143ff299;
-    border-radius: 18px;
-    box-shadow: inset 0 1px 1px #ffffffcc;
+.header-contact {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
 }
 
+.header-phone {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+}
+
+.header-contact > span {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.call-button {
+    flex-shrink: 0;
+}
+
+.call-button[aria-disabled] {
+    background: #e8edf7;
+    color: var(--muted);
+    cursor: default;
+}
+
+.glass-header .header-search,
 .glass-header .header-action {
-    background: #ffffff66;
-    border: 1px solid #ffffff85;
-    border-radius: 16px;
-    box-shadow: inset 0 1px 0 #ffffffa6;
+    background: #fff;
+    border-radius: 14px;
 }
 
 .glass-header .header-action:hover {
-    background: #ffffffb3;
+    background: #e8edf7;
 }
 
 .glass-header .catalog-button {
-    border-radius: 16px;
-    box-shadow: inset 0 1px 0 #ffffff59, 0 4px 12px #143ff21a;
+    border-radius: 14px;
 }
 
-.glass-header .brand small,
-.glass-header .header-contact small {
-    color: #525e70;
+.brand small {
+    white-space: normal;
+    letter-spacing: .5px;
 }
 
 @media (max-width: 800px) {
     .glass-header {
         border-radius: 24px;
-        margin-block: 12px 16px;
+        margin-block: 12px 20px;
     }
 
     .glass-header > .container,
     .glass-header .topbar-content {
-        width: calc(100% - 24px);
+        width: calc(100% - 28px);
     }
 
     .glass-header .topline {
         border-radius: 24px 24px 0 0;
     }
+
+    .header-contact-row {
+        gap: 10px;
+    }
+
+    .header-phone { font-size: 21px; }
+    .call-button { padding: 10px 14px; font-size: 13px; }
 }
 
-@media (prefers-reduced-transparency: reduce) {
-    .glass-header {
-        background: #f7faff;
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
-    }
+@media (max-width: 700px) {
+    .brand small,
+    .header-hours { display: none; }
+    .header-actions { gap: 4px; }
+    .header-action { min-width: 48px; padding: 7px 5px; }
+    .brand { font-size: 19px; }
+    .glass-header .header { grid-template-columns: 105px minmax(0, 1fr) auto; }
 }

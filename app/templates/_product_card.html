@@ -1,10 +1,11 @@
-<article class="product-card"><a class="product-image" href="/products/{{ product.id }}">
+<article class="glass product-card"><a class="product-image" href="/products/{{ product.id }}">
   {% if product.photo %}
     <img src="{{ product.photo }}" alt="{{ product.name }}" loading="lazy">
   {% else %}
     <img src="{{ '/static/product-placeholder-glass.svg' if request.url.path == '/' else '/static/product-placeholder.svg' }}"
          alt="Фото товара пока нет"
          loading="lazy">
+    <span class="placeholder-caption" aria-hidden="true">Фото скоро появится</span>
   {% endif %}
   </a>
   <div class="product-content">

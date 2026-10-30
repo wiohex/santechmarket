@@ -1,3 +1,5 @@
+import re
+
 from fastapi import HTTPException
 from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
@@ -24,13 +26,21 @@ templates.env.filters["money"] = money
 
 
 def render(request, template, status_code=200, **context):
+    settings = get_settings()
+    phone_digits = re.sub(r"[^0-9]", "", settings.store_phone)
+    phone_href = (
+        "tel:" + ("+" if settings.store_phone.strip().startswith("+") else "") + phone_digits
+        if 7 <= len(phone_digits) <= 15
+        else ""
+    )
     with request.app.state.session_factory() as db:
         navigation_categories = db.scalars(select(Category).order_by(Category.id).limit(12)).all()
     return templates.TemplateResponse(
         request=request,
         name=template,
         context={
-            "settings": get_settings(),
+            "settings": settings,
+            "phone_href": phone_href,
             "navigation_categories": navigation_categories,
             "user": getattr(request.state, "user", None),
             "csrf_token": request.session.get("csrf", ""),

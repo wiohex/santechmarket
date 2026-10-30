@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-{% block body_class %}home-page{% endblock %}
+{% block body_class %}home-page storefront-page{% endblock %}
+{% block backdrop %}<div class="site-backdrop" aria-hidden="true"></div>{% endblock %}
 {% block content %}
-  <section class="container hero">
+  <section class="container glass hero">
     <div class="hero-copy">
       <div class="eyebrow">ДЛЯ ВЛАДЕЛЬЦЕВ МАГАЗИНОВ И ЗАКУПЩИКОВ</div>
       <h1>
@@ -18,13 +19,13 @@
            alt="Иллюстрация смесителя и раковины"><span class="visual-label">Поставки для магазинов сантехники</span>
     </div>
   </section>
-  <section class="container section" id="categories">
+  <section class="container glass section" id="categories">
     <div class="section-head">
       <h2>Популярные категории</h2>
     </div>
     <div class="category-grid">
       {% for c in categories %}
-        <a class="category-card" href="/catalog?category={{ c.id }}">
+        <a class="glass category-card" href="/catalog?category={{ c.id }}">
           <h3>{{ c.name }}</h3>
           {% set category_icon = c.slug if c.slug in ['pipes', 'mixers', 'baths', 'toilets', 'fittings', 'sinks'] else 'fittings' %}
           <svg class="category-illustration" aria-hidden="true">
@@ -34,7 +35,7 @@
       {% endfor %}
     </div>
   </section>
-  <section class="container section">
+  <section class="container glass section">
     <div class="section-head split">
       <div>
         <h2>Ассортимент для вашего магазина</h2>
@@ -48,7 +49,7 @@
     </div>
   </section>
   <section class="container section">
-    <div class="b2b-banner">
+    <div class="glass b2b-banner">
       <div>
         <div class="eyebrow">ЛИЧНЫЙ КАБИНЕТ МАГАЗИНА</div>
         <h2>
@@ -65,7 +66,7 @@
       <a class="button light" href="/register">Создать кабинет ↗</a>
     </div>
   </section>
-  <section class="container section contacts" id="contacts">
+  <section class="container glass section contacts" id="contacts">
     <div>
       <div class="eyebrow">БУДЕМ НА СВЯЗИ</div>
       <h2>Свяжитесь с отделом продаж</h2>

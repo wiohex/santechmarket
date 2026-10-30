@@ -29,7 +29,7 @@
 }
 
 .header-contact small {
-    color: #8c919a;
+    color: var(--muted);
     font-weight: 400;
     margin-left: 10px;
 }
@@ -48,9 +48,9 @@
 }
 
 .brand small {
-    font-size: 8px;
+    font-size: 13px;
     letter-spacing: 1.4px;
-    color: #858c98;
+    color: var(--muted);
 }
 
 .brand-icon {
@@ -104,7 +104,7 @@
 }
 
 .header-search input::placeholder {
-    color: #959aa3;
+    color: var(--muted);
 }
 
 .header-actions {
@@ -122,7 +122,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1px;
-    font-size: 10px;
+    font-size: 13px;
     line-height: 1.2;
 }
 
@@ -145,7 +145,7 @@
     padding: 1px 4px;
     background: var(--accent);
     color: white;
-    font-size: 10px;
+    font-size: 13px;
     border-radius: 20px;
 }
 
@@ -191,7 +191,7 @@
 }
 
 .hero .eyebrow {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 1.5px;
     margin-bottom: 17px;
 }
@@ -204,7 +204,7 @@
 
 .hero-notes {
     margin-top: 18px;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .hero-visual {
@@ -215,7 +215,7 @@
 .visual-label {
     background: #ffffffd9;
     border-radius: 5px;
-    color: #566887;
+    color: var(--muted);
     letter-spacing: 0;
 }
 
@@ -261,8 +261,8 @@ h2 {
 }
 
 .category-card>span:last-child {
-    font-size: 11px;
-    color: #7d8490;
+    font-size: 13px;
+    color: var(--muted);
 }
 
 .category-card:hover {
@@ -300,11 +300,11 @@ h2 {
 }
 
 .product-content .stock {
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .available {
-    color: #278f55;
+    color: #0c4c2a;
 }
 
 .product-bottom {
@@ -357,7 +357,7 @@ h2 {
 }
 
 .b2b-banner p {
-    color: #777f91;
+    color: var(--muted);
 }
 
 .b2b-banner .light {
@@ -400,7 +400,7 @@ footer {
     }
 
     .brand small {
-        font-size: 7px;
+        font-size: 13px;
     }
 
     .catalog-nav {
@@ -471,7 +471,7 @@ footer {
     }
 
     .topline {
-        font-size: 11px;
+        font-size: 13px;
     }
 
     .topline .header-contact {
@@ -489,7 +489,7 @@ footer {
     }
 
     .brand small {
-        font-size: 6px;
+        font-size: 13px;
         letter-spacing: 1px;
     }
 
@@ -504,7 +504,7 @@ footer {
     .header-action {
         min-width: 45px;
         padding: 7px 8px;
-        font-size: 9px;
+        font-size: 13px;
     }
 
     .header-actions {
@@ -535,7 +535,7 @@ footer {
 
     .header-search input:not([type=hidden]) {
         padding: 10px;
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .header-search button {
@@ -550,7 +550,7 @@ footer {
     .catalog-nav {
         gap: 23px;
         padding-bottom: 13px;
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .hero {
@@ -573,7 +573,7 @@ footer {
     }
 
     .hero .eyebrow {
-        font-size: 8px;
+        font-size: 13px;
         letter-spacing: 1.3px;
     }
 
@@ -586,18 +586,18 @@ footer {
     }
 
     .hero .actions .button {
-        font-size: 12px;
+        font-size: 13px;
         padding: 10px 13px;
     }
 
     .hero-notes {
-        font-size: 10px;
+        font-size: 13px;
         gap: 12px;
     }
 
     .visual-label {
         bottom: 12px;
-        font-size: 9px;
+        font-size: 13px;
         padding: 6px 10px;
     }
 
@@ -649,7 +649,7 @@ footer {
     }
 
     .product-bottom .add-button {
-        font-size: 12px;
+        font-size: 13px;
         padding: 9px 11px;
     }
 
@@ -696,8 +696,8 @@ footer {
 }
 
 .price-note {
-    color: #7b808a;
-    font-size: 11px;
+    color: var(--muted);
+    font-size: 13px;
     line-height: 1.4;
     margin-top: -7px;
 }
@@ -705,7 +705,7 @@ footer {
 .price-terms {
     padding: 12px 14px;
     margin: 16px 0;
-    color: #52617c;
+    color: var(--muted);
     font-size: 13px;
     line-height: 1.6;
     background: #f2f5ff;

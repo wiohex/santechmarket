@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% block body_class %}storefront-page catalog-page{% endblock %}
 {% block title %}Каталог — {{ settings.store_name }}{% endblock %}
 {% block content %}
   <div class="container section">
     <div class="eyebrow">ОПТОВЫЙ АССОРТИМЕНТ ДЛЯ МАГАЗИНОВ</div>
     <h1>Каталог сантехники</h1>
     <p class="muted">Цены доступны без регистрации. Указана предварительная стоимость товаров без доставки; доставку согласуем с менеджером по телефону.</p>
-    <form class="filters" method="get">
+    <form class="glass filters" method="get">
       <label class="grow">
         Поиск<input name="q"
        value="{{ q }}"
@@ -25,7 +26,7 @@
        value="{{ max_price if max_price is not none else '' }}"></label><label class="check"><input type="checkbox"
        name="stock"
        value="true"
-       {% if stock %}checked{% endif %}>В наличии</label><button>Найти</button><a href="/catalog">Сбросить</a></form><p class="muted">Найдено товаров: {{ count }}</p><div class="product-grid">
+       {% if stock %}checked{% endif %}>В наличии</label><button>Найти</button><a href="/catalog">Сбросить</a></form><p class="muted">Найдено товаров: {{ count }}</p><div class="glass product-grid">
         {% for product in products %}
           {% include "_product_card.html" %}
         {% else %}

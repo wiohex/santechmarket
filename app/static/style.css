@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 /* Order matters: shared styles, storefront, glass header, homepage. */
-@import url("css/base.css");
-@import url("css/storefront.css");
-@import url("css/glass-header.css");
-@import url("css/home.css");
+@import url("css/base.css?v=3");
+@import url("css/storefront.css?v=3");
+@import url("css/glass.css?v=3");
+@import url("css/glass-header.css?v=3");
+@import url("css/home.css?v=3");

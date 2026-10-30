@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{{ settings.store_name }} — оптовая сантехника для магазинов{% endblock %}</title>
-    <link rel="stylesheet" href="/static/style.css?v=20261030-organized">
-    <script src="/static/app.js" defer></script>
+    <link rel="stylesheet" href="/static/style.css?v=20261030-glass-system-3">
+    <script src="/static/app.js?v=20261030-static" defer></script>
   </head>
-  <body class="{% block body_class %}{% endblock %}">
-    <div class="site-backdrop" data-scroll-backdrop aria-hidden="true"></div>
-    <div class="container glass-header">
+  <body class="{% block body_class %}work-page{% endblock %}">
+    {% block backdrop %}{% endblock %}
+    <div class="container glass glass-header">
     <div class="topline">
       <div class="container topbar-content">
         <a href="/#contacts" class="store-location">Оптовые поставки в магазины</a>
         <nav aria-label="Информация о магазине">
           <a href="/#contacts">О поставщике</a><a href="/account">Магазинам</a><a href="/#contacts">Контакты</a>
         </nav>
-        <span class="header-contact">{{ settings.store_phone or 'Поможем с подбором' }} <small>{{ settings.store_hours }}</small></span>
+        <span class="header-hours">{{ settings.store_hours }}</span>
       </div>
     </div>
     <header class="container header">
@@ -49,6 +49,23 @@
               </svg><span>Заявка</span><span class="counter">{{ cart_count }}</span></a>
             </div>
           </header>
+          <div class="container header-contact-row">
+            <div class="header-contact">
+              {% if phone_href %}
+                <a class="header-phone" href="{{ phone_href }}">{{ settings.store_phone }}</a>
+                <span>Отдел продаж · {{ settings.store_hours }}</span>
+              {% else %}
+                <strong class="header-phone">+7 (000) 000-00-00</strong>
+                <span>Демо-номер · {{ settings.store_hours }}</span>
+              {% endif %}
+            </div>
+            {% if phone_href %}
+              <a class="button call-button" href="{{ phone_href }}">Позвонить</a>
+            {% else %}
+              <span class="button call-button" role="link" aria-disabled="true"
+                    title="Демо: настоящий номер задаётся в STORE_PHONE">Позвонить</span>
+            {% endif %}
+          </div>
           <nav class="container catalog-nav" aria-label="Категории товаров">
             {% for c in navigation_categories %}<a href="/catalog?category={{ c.id }}">{{ c.name }}</a>{% endfor %}
             <a class="selection-link" href="/quick-request">Помощь с подбором →</a>
@@ -63,7 +80,7 @@
             {% block content %}{% endblock %}
           </main>
           <footer>
-            <div class="container footer">
+            <div class="container glass footer">
               <div>
                 <strong>{{ settings.store_name }}</strong>
                 <p>Поставки сантехники для магазинов.</p>
